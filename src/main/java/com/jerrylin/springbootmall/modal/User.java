@@ -1,12 +1,17 @@
 package com.jerrylin.springbootmall.modal;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Date;
 
 public class User {
 
     private int userId;
     private String email;
+
+    @JsonIgnore
     private String password;
+
     private Date createDate;
     private Date lastModifiedDate;
 
