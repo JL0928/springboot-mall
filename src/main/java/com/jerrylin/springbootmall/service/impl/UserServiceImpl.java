@@ -1,6 +1,7 @@
 package com.jerrylin.springbootmall.service.impl;
 
 import com.jerrylin.springbootmall.dao.UserDao;
+import com.jerrylin.springbootmall.dto.UserLonginRequest;
 import com.jerrylin.springbootmall.dto.UserRegisterRequest;
 import com.jerrylin.springbootmall.modal.User;
 import com.jerrylin.springbootmall.service.UserService;
@@ -37,5 +38,20 @@ public class UserServiceImpl implements UserService {
     public User getUserById(int userId) {
 
         return userDao.getUserById(userId);
+    }
+
+    @Override
+    public User login(UserLonginRequest userLonginRequest) {
+        User user = userDao.getUserByEmail(userLonginRequest.getEmail());
+
+        if(user == null){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+        if(user.getPassword().equals(userLonginRequest.getPassword())){
+            return user;
+        }else{
+            log.warn("email {} 的密碼不正確",userLonginRequest.getEmail());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
     }
 }
