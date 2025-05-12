@@ -1,7 +1,7 @@
 package com.jerrylin.springbootmall.service.impl;
 
 import com.jerrylin.springbootmall.dao.UserDao;
-import com.jerrylin.springbootmall.dto.UserLonginRequest;
+import com.jerrylin.springbootmall.dto.UserLoginRequest;
 import com.jerrylin.springbootmall.dto.UserRegisterRequest;
 import com.jerrylin.springbootmall.modal.User;
 import com.jerrylin.springbootmall.service.UserService;
@@ -46,8 +46,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User login(UserLonginRequest userLonginRequest) {
-        User user = userDao.getUserByEmail(userLonginRequest.getEmail());
+    public User login(UserLoginRequest userLoginRequest) {
+        User user = userDao.getUserByEmail(userLoginRequest.getEmail());
 
         //檢查User是否存在
         if(user == null){
@@ -55,14 +55,14 @@ public class UserServiceImpl implements UserService {
         }
 
         //使用 MD5 生成密碼的雜湊值
-        String hashPassword = DigestUtils.md5DigestAsHex(userLonginRequest.getPassword().getBytes());
+        String hashPassword = DigestUtils.md5DigestAsHex(userLoginRequest.getPassword().getBytes());
 
 
         //比較密碼
         if(user.getPassword().equals(hashPassword)){
             return user;
         }else{
-            log.warn("email {} 的密碼不正確",userLonginRequest.getEmail());
+            log.warn("email {} 的密碼不正確", userLoginRequest.getEmail());
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
     }

@@ -3,7 +3,7 @@ package com.jerrylin.springbootmall.dto;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
-public class UserLonginRequest {
+public class UserLoginRequest {
 
     @Email
     @NotBlank

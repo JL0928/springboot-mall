@@ -1,6 +1,6 @@
 package com.jerrylin.springbootmall.service;
 
-import com.jerrylin.springbootmall.dto.UserLonginRequest;
+import com.jerrylin.springbootmall.dto.UserLoginRequest;
 import com.jerrylin.springbootmall.dto.UserRegisterRequest;
 import com.jerrylin.springbootmall.modal.User;
 
@@ -10,5 +10,5 @@ public interface UserService {
 
     User getUserById(int userId);
 
-    User login(UserLonginRequest userLonginRequest);
+    User login(UserLoginRequest userLoginRequest);
 }

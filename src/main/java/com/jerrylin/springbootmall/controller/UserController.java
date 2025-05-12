@@ -1,6 +1,6 @@
 package com.jerrylin.springbootmall.controller;
 
-import com.jerrylin.springbootmall.dto.UserLonginRequest;
+import com.jerrylin.springbootmall.dto.UserLoginRequest;
 import com.jerrylin.springbootmall.dto.UserRegisterRequest;
 import com.jerrylin.springbootmall.modal.User;
 import com.jerrylin.springbootmall.service.UserService;
@@ -31,9 +31,9 @@ public class UserController {
     }
 
     @PostMapping("/users/login")
-    public ResponseEntity<User> login(@RequestBody @Valid UserLonginRequest userLonginRequest) {
+    public ResponseEntity<User> login(@RequestBody @Valid UserLoginRequest userLoginRequest) {
 
-        User user = userService.login(userLonginRequest);
+        User user = userService.login(userLoginRequest);
 
         return ResponseEntity.status(HttpStatus.OK).body(user);
 
